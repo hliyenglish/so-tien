@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sổ Tiền</title>
+    <meta name="description" content="Sổ thu chi cá nhân: ghi nhanh, đồng bộ qua GitHub, xuất Excel." />
+    <meta name="theme-color" content="#0c4d49" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Sổ Tiền" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+    <script>
+      // Áp dụng giao diện sáng/tối trước khi vẽ trang để không bị nháy
+      try {
+        var t = localStorage.getItem('pf.theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div class="shell">
+      <nav class="nav" aria-label="Điều hướng chính">
+        <div class="brand"><img src="icons/icon-192.png" alt="" /> Sổ Tiền</div>
+        <a href="#/home" data-route="home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5h-4.5v-6h-5v6H5A1.5 1.5 0 0 1 3.5 19z" /></svg>
+          <span>Tổng quan</span>
+        </a>
+        <a href="#/tx" data-route="tx">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 6.5h12M8 12h12M8 17.5h12" /><circle cx="4" cy="6.5" r="1" fill="currentColor" /><circle cx="4" cy="12" r="1" fill="currentColor" /><circle cx="4" cy="17.5" r="1" fill="currentColor" /></svg>
+          <span>Sổ chi</span>
+        </a>
+        <button class="add" type="button" data-act="openAdd" aria-label="Ghi khoản mới (phím N)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+          <span>Ghi khoản mới</span>
+        </button>
+        <a href="#/reports" data-route="reports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6" /></svg>
+          <span>Báo cáo</span>
+        </a>
+        <a href="#/settings" data-route="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9" /><circle cx="15" cy="7" r="2" /><circle cx="9" cy="17" r="2" /></svg>
+          <span>Cài đặt</span>
+        </a>
+      </nav>
+      <main id="view" tabindex="-1"></main>
+    </div>
+    <div id="sheet-root"></div>
+    <div id="modal-root"></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <input type="file" id="importFile" accept=".json,application/json" hidden />
+    <noscript>Sổ Tiền cần bật JavaScript để chạy.</noscript>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
